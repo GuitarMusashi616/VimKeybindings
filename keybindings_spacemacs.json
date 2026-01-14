@@ -13,12 +13,12 @@
 	{
 		"key": "tab",
 		"command": "extension.vim_tab",
-		"when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+		"when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
 	},
 	{
 		"key": "tab",
 		"command": "-extension.vim_tab",
-		"when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+		"when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
 	},
 	{
 		"key": "x",
@@ -72,6 +72,16 @@
 		"key": "y",
 		"command": "vspacecode.showMagitRefMenu",
 		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'"
+	},
+	{
+		"key": "g",
+		"command": "-magit.refresh",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "g",
+		"command": "vspacecode.showMagitRefreshMenu",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
 	},
 	{
 		"key": "ctrl+j",
@@ -132,5 +142,64 @@
 		"key": "ctrl+l",
 		"command": "file-browser.stepIn",
 		"when": "inFileBrowser"
-	}
+	},
+	// AI Code Suggestions
+	{
+		"key": "alt+\\",
+		"command": "editor.action.inlineSuggest.trigger"
+	},
+	// Quick Navigation for VSpaceCode
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "!inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown",
+        "when": "!codeActionMenuVisible && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp",
+        "when": "!codeActionMenuVisible && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+        "when": "!codeActionMenuVisible && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor"
+    },
+    // Quick Navigation for diff view
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.compareEditor.focusSecondarySide",
+        "when": "isInDiffEditor && !isInDiffLeftEditor"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "isInDiffEditor && isInDiffLeftEditor"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.compareEditor.focusPrimarySide",
+        "when": "isInDiffEditor && isInDiffLeftEditor"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+        "when": "isInDiffEditor && !isInDiffLeftEditor"
+    },
+    // Focus search results (Down) when Search Input is active
+    {
+        "key": "ctrl+j",
+        "command": "search.action.focusSearchList",
+        "when": "searchInputBoxFocus"
+    },
+    // Focus search input (Up) when in Search Results list
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.findInFiles",
+        "when": "searchViewletFocus && !searchInputBoxFocus"
+    }
 ]
