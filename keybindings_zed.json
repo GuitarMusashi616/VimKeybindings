@@ -1,0 +1,205 @@
+// Zed keymap in the style of VSpaceCode
+// Store in ~/AppData/Roaming/Zed/keymap.json for windows
+// Store in ~/.config/zed/keymap.json for linux/mac
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // ---------------------------------------------------------
+      // Base / Root Shortcuts
+      // ---------------------------------------------------------
+      "space space": "command_palette::Toggle",
+      "space tab": "pane::ActivatePreviousItem",
+      "space '": "terminal_panel::Toggle",
+      "space !": "terminal_panel::Toggle",
+      "space /": "pane::DeploySearch",
+      "space ?": "keymap_editor::ToggleKeystrokeSearch",
+      "space ;": ["editor::ToggleComments", { "advance_downwards": false }],
+      "space 0": "project_panel::ToggleFocus",
+
+      // ---------------------------------------------------------
+      // b: Buffers / Tabs
+      // ---------------------------------------------------------
+      "space b b": "tab_switcher::Toggle",
+      "space b d": "pane::CloseActiveItem",
+      "space b n": "pane::ActivateNextItem",
+      "space b p": "pane::ActivatePreviousItem",
+      "space b s": "workspace::NewFile",
+      "space b u": "pane::ReopenClosedItem",
+      "space b t": "pane::TogglePinTab",
+      "space b M": ["pane::CloseOtherItems", { "close_pinned": false }],
+      "space b Y": "editor::CopyPath",
+      "H": "pane::ActivatePreviousItem",
+      "L": "pane::ActivateNextItem",
+      // ---------------------------------------------------------
+      // e: Errors / Diagnostics
+      // ---------------------------------------------------------
+      "space e e": "editor::Hover",
+      "space e l": "diagnostics::Deploy",
+      "space e n": "editor::GoToDiagnostic",
+      "space e p": "editor::GoToPreviousDiagnostic",
+      "space e N": "editor::GoToPreviousDiagnostic",
+      "space e f": "editor::ToggleCodeActions",
+
+      // ---------------------------------------------------------
+      // f: Files
+      // ---------------------------------------------------------
+      "space f f": "file_finder::Toggle",
+      "space f s": "workspace::Save",
+      "space f S": "workspace::SaveAll",
+      "space f t": "project_panel::ToggleFocus",
+      "space f e d": "zed::OpenSettings",
+      "space f e k": "zed::OpenKeymap",
+      "space f D": ["project_panel::Trash", { "skip_prompt": false }],
+
+      // ---------------------------------------------------------
+      // g: Git
+      // ---------------------------------------------------------
+      "space g s": "git_panel::ToggleFocus",
+      "space g b": "editor::ToggleGitBlameInline",
+      "space g d": "git::Diff",
+      "space g c": "git::Clone",
+
+      // ---------------------------------------------------------
+      // j: Jump / Join / Split
+      // ---------------------------------------------------------
+      "space j i": "outline::Toggle",
+      "space j J": "project_symbols::Toggle",
+      "space j c": "editor::GoToNextChange",
+      "space j C": "editor::GoToPreviousChange",
+      "space j =": "editor::Format",
+      "space j n": "editor::JoinLines",
+
+      // ---------------------------------------------------------
+      // p: Project
+      // ---------------------------------------------------------
+      "space p p": "projects::OpenRecent",
+      "space p l": "projects::OpenRecent",
+      "space p f": "file_finder::Toggle",
+      "space p t": "project_panel::ToggleFocus",
+      "space p R": "pane::DeploySearch",
+
+      // ---------------------------------------------------------
+      // q: Quit / Frame
+      // ---------------------------------------------------------
+      "space q q": "workspace::CloseWindow",
+      "space q f": "workspace::CloseWindow",
+      "space q Q": "zed::Quit",
+
+      // ---------------------------------------------------------
+      // s: Search / Symbol
+      // ---------------------------------------------------------
+      "space s p": "pane::DeploySearch",
+      "space s s": "buffer_search::Deploy",
+      "space s r": "editor::FindAllReferences",
+      "space s e": "editor::Rename",
+      "space s J": "project_symbols::Toggle",
+      "space s j": "outline::Toggle",
+
+      // ---------------------------------------------------------
+      // t: Toggles
+      // ---------------------------------------------------------
+      "space t l": "editor::ToggleSoftWrap",
+      "space t c": "search::ToggleCaseSensitive",
+
+      // ---------------------------------------------------------
+      // w: Window / Panes
+      // ---------------------------------------------------------
+      "space w /": "pane::SplitRight",
+      "space w v": "pane::SplitRight",
+      "space w -": "pane::SplitDown",
+      "space w s": "pane::SplitDown",
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w l": "workspace::ActivatePaneRight",
+      "space w w": "workspace::ActivateNextPane",
+      "space w W": "workspace::ActivatePreviousPane",
+      "space w d": "pane::CloseActiveItem",
+      "space w x": "workspace::CloseAllItemsAndPanes",
+      "space w H": "workspace::SwapPaneLeft",
+      "space w J": "workspace::SwapPaneDown",
+      "space w K": "workspace::SwapPaneUp",
+      "space w L": "workspace::SwapPaneRight",
+      "space w =": "workspace::ResetOpenDocksSize",
+    },
+  },
+  {
+    // Apply visual-specific VSpaceCode selections
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space j =": "editor::FormatSelections",
+      "space /": [
+        "buffer_search::Deploy",
+        { "selection_search_enabled": true },
+      ],
+    },
+  },
+  {
+    // Add file tree toggles to the Project Panel context
+    "context": "ProjectPanel",
+    "bindings": {
+      "space f t": "project_panel::ToggleFocus",
+      "space p t": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    // Applies to menus like right-click context menus
+    "context": "menu",
+    "bindings": {
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-j": "menu::SelectNext",
+    },
+  },
+  {
+    // Applies to the Command Palette, File Finder, etc.
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-j": "menu::SelectNext",
+    },
+  },
+  // Remap all ctrl-w to ctrl-f4
+  // Just null ctrl-w since ctrl-f4 already does the same by default
+  {
+    "context": "RulesLibrary",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-w": null,
+    },
+  },
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-w": null,
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-w": null,
+    },
+  },
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-w": null,
+    },
+  },
+  // Done unmapping ctrl-w
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+]
