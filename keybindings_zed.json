@@ -9,6 +9,18 @@
 // from the command palette.
 [
   {
+    "context": "vim_mode == normal && left_dock == ProjectPanel",
+    "bindings": {
+      "space f t": "workspace::ToggleLeftDock",
+    },
+  },
+  {
+    "context": "vim_mode == normal && left_dock != ProjectPanel",
+    "bindings": {
+      "space f t": "workspace::ToggleLeftDock",
+    },
+  },
+  {
     "context": "Editor && vim_mode == normal",
     "bindings": {
       // ---------------------------------------------------------
@@ -26,7 +38,7 @@
       // ---------------------------------------------------------
       // b: Buffers / Tabs
       // ---------------------------------------------------------
-      "space b b": "tab_switcher::Toggle",
+      "space b b": "tab_switcher::ToggleAll",
       "space b d": "pane::CloseActiveItem",
       "space b n": "pane::ActivateNextItem",
       "space b p": "pane::ActivatePreviousItem",
@@ -53,9 +65,11 @@
       "space f f": "file_finder::Toggle",
       "space f s": "workspace::Save",
       "space f S": "workspace::SaveAll",
-      "space f t": "project_panel::ToggleFocus",
+      "space f n": "workspace::NewFile",
       "space f e d": "zed::OpenSettings",
       "space f e k": "zed::OpenKeymap",
+      "space f e D": "zed::OpenSettingsFile",
+      "space f e K": "zed::OpenKeymapFile",
       "space f D": ["project_panel::Trash", { "skip_prompt": false }],
 
       // ---------------------------------------------------------
@@ -145,7 +159,6 @@
     // Add file tree toggles to the Project Panel context
     "context": "ProjectPanel",
     "bindings": {
-      "space f t": "project_panel::ToggleFocus",
       "space p t": "project_panel::ToggleFocus",
     },
   },
@@ -159,7 +172,7 @@
   },
   {
     // Applies to the Command Palette, File Finder, etc.
-    "context": "Picker > Editor",
+    "context": "Picker",
     "bindings": {
       "ctrl-k": "menu::SelectPrevious",
       "ctrl-j": "menu::SelectNext",
