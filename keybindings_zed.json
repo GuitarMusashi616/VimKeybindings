@@ -8,6 +8,27 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
+  {
+    "bindings": {
+      "ctrl-0": "project_panel::ToggleFocus",
+    },
+  },
+  // use ctrl-(number) to cycle through menus
+  {
+    "context": "Workspace || Terminal",
+    "bindings": {
+      "ctrl-1": ["workspace::ActivatePane", 0],
+      "ctrl-2": "outline_panel::ToggleFocus",
+      "ctrl-3": "git_panel::ToggleFocus",
+    },
+  },
+  // create new file in same directory as active file
+  {
+    "context": "Editor && vim_mode == normal && !ProjectPanel",
+    "bindings": {
+      "space f n": ["workspace::SendKeystrokes", "space p t %"],
+    },
+  },
   // control windows with ctrl-w even when using the terminal
   {
     "context": "VimControl && !menu || !Editor && Terminal",
@@ -87,6 +108,13 @@
       "ctrl-w c": "pane::CloseActiveItem",
     },
   },
+  // ctrl-w c to close the left bar
+  {
+    "context": "Workspace && !Editor",
+    "bindings": {
+      "ctrl-w c": "pane::CloseActiveItem",
+    },
+  },
   // space f t to toggle left file tree (different from space p t)
   {
     "context": "vim_mode == normal && left_dock == ProjectPanel",
@@ -145,14 +173,15 @@
       // f: Files
       // ---------------------------------------------------------
       "space f f": "file_finder::Toggle",
+      "space f r": "file_finder::Toggle",
       "space f s": "workspace::Save",
       "space f S": "workspace::SaveAll",
-      "space f n": "workspace::NewFile",
       "space f e d": "zed::OpenSettings",
       "space f e k": "zed::OpenKeymap",
       "space f e D": "zed::OpenSettingsFile",
       "space f e K": "zed::OpenKeymapFile",
-      "space f D": ["project_panel::Trash", { "skip_prompt": false }],
+      "space f D": "project_panel::Delete",
+      "space f R": "project_panel::Rename",
 
       // ---------------------------------------------------------
       // g: Git
@@ -244,10 +273,18 @@
     },
   },
   {
+    // Close out of left bar when focused
+    "context": "ProjectPanel || GitPanel",
+    "bindings": {
+      "ctrl-w c": "workspace::ToggleLeftDock",
+    },
+  },
+  {
     // Add file tree toggles to the Project Panel context
     "context": "ProjectPanel",
     "bindings": {
       "space p t": "project_panel::ToggleFocus",
+      "space f n": "project_panel::NewFile",
     },
   },
   {
