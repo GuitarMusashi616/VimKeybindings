@@ -8,6 +8,86 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
+  // control windows with ctrl-w even when using the terminal
+  {
+    "context": "VimControl && !menu || !Editor && Terminal",
+    "bindings": {
+      // window related commands (ctrl-w X)
+      "ctrl-w": null,
+      "ctrl-w left": "workspace::ActivatePaneLeft",
+      "ctrl-w right": "workspace::ActivatePaneRight",
+      "ctrl-w up": "workspace::ActivatePaneUp",
+      "ctrl-w down": "workspace::ActivatePaneDown",
+      "ctrl-w ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-w ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-w ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-w ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w shift-left": "workspace::SwapPaneLeft",
+      "ctrl-w shift-right": "workspace::SwapPaneRight",
+      "ctrl-w shift-up": "workspace::SwapPaneUp",
+      "ctrl-w shift-down": "workspace::SwapPaneDown",
+      "ctrl-w x": "workspace::SwapPaneAdjacent",
+      "ctrl-w ctrl-x": "workspace::SwapPaneAdjacent",
+      "ctrl-w shift-h": "workspace::MovePaneLeft",
+      "ctrl-w shift-l": "workspace::MovePaneRight",
+      "ctrl-w shift-k": "workspace::MovePaneUp",
+      "ctrl-w shift-j": "workspace::MovePaneDown",
+      "ctrl-w >": "vim::ResizePaneRight",
+      "ctrl-w <": "vim::ResizePaneLeft",
+      "ctrl-w -": "vim::ResizePaneDown",
+      "ctrl-w +": "vim::ResizePaneUp",
+      "ctrl-w _": "vim::MaximizePane",
+      "ctrl-w =": "vim::ResetPaneSizes",
+      "ctrl-w g t": "pane::ActivateNextItem",
+      "ctrl-w ctrl-g t": "pane::ActivateNextItem",
+      "ctrl-w g shift-t": "pane::ActivatePreviousItem",
+      "ctrl-w ctrl-g shift-t": "pane::ActivatePreviousItem",
+      "ctrl-w w": "workspace::ActivateNextPane",
+      "ctrl-w ctrl-w": "workspace::ActivateNextPane",
+      "ctrl-w p": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-p": "workspace::ActivatePreviousPane",
+      "ctrl-w shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-v": "pane::SplitVertical",
+      "ctrl-w v": "pane::SplitVertical",
+      "ctrl-w shift-s": "pane::SplitHorizontal",
+      "ctrl-w ctrl-s": "pane::SplitHorizontal",
+      "ctrl-w s": "pane::SplitHorizontal",
+      "ctrl-w ctrl-c": "pane::CloseActiveItem",
+      "ctrl-w c": "pane::CloseActiveItem",
+      "ctrl-w ctrl-q": "pane::CloseActiveItem",
+      "ctrl-w q": "pane::CloseActiveItem",
+      "ctrl-w ctrl-a": "pane::CloseAllItems",
+      "ctrl-w a": "pane::CloseAllItems",
+      "ctrl-w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal",
+      "ctrl-w n": "workspace::NewFileSplitHorizontal",
+      "g t": "vim::GoToTab",
+      "g shift-t": "vim::GoToPreviousTab",
+    },
+  },
+  // disable vim motions that are never used / put back to default
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-e": "file_finder::Toggle",
+      "ctrl-y": "editor::Redo",
+      "ctrl-b": "workspace::ToggleLeftDock",
+    },
+  },
+  // close the search when it's empty
+  {
+    "context": "VimControl && !menu || Editor && !Terminal",
+    "bindings": {
+      "ctrl-w c": "pane::CloseActiveItem",
+    },
+  },
+  // space f t to toggle left file tree (different from space p t)
   {
     "context": "vim_mode == normal && left_dock == ProjectPanel",
     "bindings": {
@@ -20,6 +100,7 @@
       "space f t": "workspace::ToggleLeftDock",
     },
   },
+  // end space f t toggle
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
@@ -31,6 +112,7 @@
       "space '": "terminal_panel::Toggle",
       "space !": "terminal_panel::Toggle",
       "space /": "pane::DeploySearch",
+      "space *": "pane::DeploySearch",
       "space ?": "keymap_editor::ToggleKeystrokeSearch",
       "space ;": ["editor::ToggleComments", { "advance_downwards": false }],
       "space 0": "project_panel::ToggleFocus",
@@ -121,6 +203,12 @@
       // ---------------------------------------------------------
       "space t l": "editor::ToggleSoftWrap",
       "space t c": "search::ToggleCaseSensitive",
+
+      // ---------------------------------------------------------
+      // T: Show
+      // ---------------------------------------------------------
+      "space T b": "workspace::ToggleLeftDock",
+      "space T j": "workspace::ToggleBottomDock",
 
       // ---------------------------------------------------------
       // w: Window / Panes
